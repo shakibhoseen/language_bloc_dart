@@ -1,0 +1,3 @@
+class AppUrl {
+  static const americaPng = 'https://s3-alpha-sig.figma.com/img/7fab/a514/3d531c1c7835b9d9ceae22177076d9f1?Expires=1708905600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=phkHMaeNITPtGQv~96GISEHJTf0FJi-5iUmaCJE--w~rBUVqPcMCB-eB9~saVZ1dprwQ4oV5jhDivC53m28tfXxIW~zVTosCg0xrUZscPudNSdM7Ps0-Hu36wWoFUSAdN8KQ~JkO6VevqIRA2ztQrr6pfYxJ6XAO9HYNZfIRUEAvkrTrT2GQzeRRXvBJ4WmSYKB6DIUCcbErlNEcWK6-GuknskgWWZagcOU2LYYhANJOSOLXwZ567vMb~XsPHvMuh4W1unPTIfnlXwmgQAbyuEAAuq14yG9rVEyDV7By7Py3UhbodZv676Dyj4cw21zYans0lbJEOB4xjkPQwe7N9w__';
+}
