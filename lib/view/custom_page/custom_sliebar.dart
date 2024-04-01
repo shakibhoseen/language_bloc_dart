@@ -17,7 +17,9 @@ class _CustomSliebarState extends State<CustomSliebar>
   late AnimationController controller;
   double startTapPosition = 0.0;
   double holdPositionValue = 0.0;
-  bool hasReachedEnd = false;
+  bool hasReachedEnd = false, myStop =false;
+   VoidCallback? _animationListener;
+
 
   @override
   void initState() {
@@ -43,7 +45,13 @@ class _CustomSliebarState extends State<CustomSliebar>
               child: GestureDetector(
                 onHorizontalDragStart: (details) {
                   // Handle drag start event
+                  controller.stop();
+                  if(_animationListener!=null){
+                    controller.removeListener(_animationListener!);
+                    myStop = true;
+                  }
                   startTapPosition = details.localPosition.dy;
+
                 },
                 onHorizontalDragUpdate: (details) {
                   final swipe = startTapPosition - details.localPosition.dy;
@@ -120,7 +128,7 @@ class _CustomSliebarState extends State<CustomSliebar>
     if (valueChange.value > gestureHeight / 2 - 25) {
       end = gestureHeight - 50;
     }
-    holdPositionValue = end;
+
     controller.value = 0; // Reset the animation to start from the beginning
     controller.animateTo(
       1,
@@ -128,10 +136,13 @@ class _CustomSliebarState extends State<CustomSliebar>
       duration: const Duration(milliseconds: 1000),
     );
 
-    controller.addListener(() {
+    _animationListener = () {
       final double value = lerpDouble(start, end, controller.value)!;
       valueChange.value = value;
       hasReachedEnd = value > 700 ? true : false;
-    });
+      holdPositionValue = value;
+    };
+
+    controller.addListener(_animationListener!);
   }
 }
