@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'dart:ffi';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -51,19 +52,24 @@ class _CustomSliebarState extends State<CustomSliebar>
                     myStop = true;
                   }
                   startTapPosition = details.localPosition.dy;
-
+                  holdPositionValue = valueChange.value;
                 },
                 onHorizontalDragUpdate: (details) {
                   final swipe = startTapPosition - details.localPosition.dy;
                   final isScrollDown = swipe > 0 ? false : true;
                   //log('(${swipe} -- ${isScrollDown}) ');
-                  if (hasReachedEnd) {
-                    if (!isScrollDown) {
-                      valueChange.value = holdPositionValue - swipe;
-                    }
-                  } else if (isScrollDown) {
-                    valueChange.value = (swipe).abs();
+                  // if (hasReachedEnd) {
+                  //   if (!isScrollDown) {
+                  //     valueChange.value = gestureHeight - swipe;
+                  //   }
+                  // } else if (isScrollDown) {
+                  //   valueChange.value = (swipe).abs();
+                  // }
+                   final updatePosition = holdPositionValue - swipe; // indicate scroll down
+                  if(updatePosition>0 && updatePosition<gestureHeight){
+                    valueChange.value = updatePosition;
                   }
+
                 },
                 onHorizontalDragEnd: (details) {
                   _handleDragEnd((valueChange.value).abs());
