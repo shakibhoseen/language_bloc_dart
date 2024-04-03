@@ -1,5 +1,4 @@
 import 'dart:developer';
-import 'dart:ffi';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -47,7 +46,7 @@ class _CustomSliebarState extends State<CustomSliebar>
                 onHorizontalDragStart: (details) {
                   // Handle drag start event
                   controller.stop();
-                  if(_animationListener!=null){
+                  if (_animationListener != null) {
                     controller.removeListener(_animationListener!);
                     myStop = true;
                   }
@@ -69,7 +68,6 @@ class _CustomSliebarState extends State<CustomSliebar>
                   if(updatePosition>0 && updatePosition<gestureHeight){
                     valueChange.value = updatePosition;
                   }
-
                 },
                 onHorizontalDragEnd: (details) {
                   _handleDragEnd((valueChange.value).abs());
@@ -145,7 +143,7 @@ class _CustomSliebarState extends State<CustomSliebar>
     _animationListener = () {
       final double value = lerpDouble(start, end, controller.value)!;
       valueChange.value = value;
-      hasReachedEnd = value > 700 ? true : false;
+      //hasReachedEnd = value > 700 ? true : false;
       holdPositionValue = value;
     };
 

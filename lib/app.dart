@@ -1,5 +1,6 @@
 
 import 'package:first_project/l10n/app_l10n.dart';
+import 'package:first_project/view/custom_page/custom_slide2.dart';
 import 'package:first_project/view/custom_page/custom_sliebar.dart';
 import 'package:first_project/view/screen/custom_scroll.dart';
 import 'package:first_project/view/screen/paint_screen.dart';
@@ -54,7 +55,7 @@ class MyApp extends StatelessWidget {
       //   create: (_) => CounterCubit(),
       //   child: const CubitScreen(),
       // ),
-      const CustomSliebar(),
+      const CustomSliebar2(),
      //const OnboardingScreen(),
     );
   }
