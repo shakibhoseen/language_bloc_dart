@@ -21,7 +21,7 @@ class _CustomSliebar2State extends State<CustomSliebar2>
   VoidCallback? _animationListener;
 
   double totalPage = 10.0;
-  double currentPage = 3 , currentThreshHold =0.0;
+  double currentPage = 0 , currentThreshHold =0.0;
 
 
   @override
@@ -97,7 +97,7 @@ class _CustomSliebar2State extends State<CustomSliebar2>
                        final updatePosition =
                           holdPositionValue - swipe; // indicate scroll down
                    double holderThreshToCheck = calculateThreshHold(updatePosition) ;
-                    if(holderThreshToCheck>0 && holderThreshToCheck<totalPage-1){
+                    if(holderThreshToCheck>0.1 && holderThreshToCheck<totalPage-1){
                       if(approxEqual(gestureHeight -50, holdPositionValue, 0.1) && needEndCall){
                         holdPositionValue = 0;
                         destinationReverse = 0;
@@ -128,7 +128,8 @@ class _CustomSliebar2State extends State<CustomSliebar2>
                     _handleDragEnd((valueChange.value).abs());
 
                   }else{
-                    if((currentThreshHold - totalPage).abs() < currentThreshHold.abs()){
+                    if((valueChange.value - totalPage).abs() > valueChange.value.abs()){
+                      //if(valueChange.value)
                       _handleDragEnd(0);
                     }else{
                       _handleDragEnd(gestureHeight-50);

@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'cubit/counter_cubit.dart';
+import 'view/custom_page/custom_sliebar3duo.dart';
 import 'view/screen/onboarding_screen.dart';
 
 class MyApp extends StatelessWidget {
@@ -55,7 +56,7 @@ class MyApp extends StatelessWidget {
       //   create: (_) => CounterCubit(),
       //   child: const CubitScreen(),
       // ),
-      const CustomSliebar2(),
+      const CustomSliebar3(),
      //const OnboardingScreen(),
     );
   }
