@@ -112,7 +112,7 @@ class MyController{
       _handleDragEnd((_valueChangeValue).abs());
 
     }else{
-      if((_valueChangeValue - totalPage).abs() > _valueChangeValue.abs()){
+      if((_valueChangeValue - gestureHeight).abs() > _valueChangeValue.abs()){
         _handleDragEnd(0);
       }else{
         _handleDragEnd(gestureHeight-50);
