@@ -1,7 +1,11 @@
 
 import 'package:first_project/l10n/app_l10n.dart';
+import 'package:first_project/view/custom_page/develop_screen.dart';
+import 'package:first_project/view/custom_page/controller/sm_controller.dart';
 import 'package:first_project/view/custom_page/custom_slide2.dart';
 import 'package:first_project/view/custom_page/custom_sliebar.dart';
+import 'package:first_project/view/custom_page/oop_screen.dart';
+import 'package:first_project/view/custom_page/widget/flip_develop_screen.dart';
 import 'package:first_project/view/screen/custom_scroll.dart';
 import 'package:first_project/view/screen/paint_screen.dart';
 import 'package:first_project/view/screen/cubit_screen.dart';
@@ -10,7 +14,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'cubit/counter_cubit.dart';
-import 'view/custom_page/custom_sliebar3duo.dart';
+import 'view/custom_page/widget/sm_controller_widget.dart';
 import 'view/screen/onboarding_screen.dart';
 
 class MyApp extends StatelessWidget {
@@ -56,7 +60,7 @@ class MyApp extends StatelessWidget {
       //   create: (_) => CounterCubit(),
       //   child: const CubitScreen(),
       // ),
-      const SMControllerWidget(),
+      FlipDevelopScreen( ),
      //const OnboardingScreen(),
     );
   }
