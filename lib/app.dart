@@ -56,7 +56,7 @@ class MyApp extends StatelessWidget {
       //   create: (_) => CounterCubit(),
       //   child: const CubitScreen(),
       // ),
-      const CustomSliebar3(),
+      const SMControllerWidget(),
      //const OnboardingScreen(),
     );
   }

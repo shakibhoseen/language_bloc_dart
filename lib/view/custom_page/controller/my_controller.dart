@@ -10,7 +10,7 @@ class MyController{
 
   MyController({required this.animationCurve, required this.gestureHeight, required TickerProvider vsync, required this.totalPage}): controller = AnimationController(
     vsync: vsync,
-    duration: const Duration(seconds: 2),
+    duration: const Duration(seconds: 5),
   );
   final listener = ValueNotifier<(double, double)>((0, 0));
 
@@ -19,11 +19,35 @@ class MyController{
   final double totalPage ;
   double _currentPage = 0 , _currentThreshHold =0.0, _valueChangeValue = 0.0;
   bool _needEndCall =false, _needStartCall =false, _blockDragEndCall =false;
-
+  bool animatingRun = false;
 
   void listenProgress(){
      //listen( _valueChangeValue,  _currentThreshHold);
     listener.value = ( _valueChangeValue,  _currentThreshHold);
+  }
+
+  bool stopAnimation(){
+    if(controller!=null && controller.isAnimating){
+      controller.stop();
+      animatingRun = true;
+      return true;
+    }return false;
+  }
+
+  bool playAnimation(){
+    //controller.forward();
+    if(controller!=null && !controller.isAnimating){
+      controller.forward();
+      animatingRun = true;
+      return true;
+    }return false;
+  }
+
+  bool isAnimating(){
+    return controller.isAnimating;
+  }
+  bool isCompleted(){
+    return controller.isCompleted;
   }
 
 
@@ -50,9 +74,9 @@ class MyController{
     final isScrollUp = swipe > 0 ? true: false ;
 
     ///page behaviour attach
-    log('$swipe -----------------');
+    // log('$swipe -----------------');
     if(isScrollUp ){
-      log('up');
+      //log('up');
       //scrollDown --- // swipe up --positive
       final updatePosition = _holdPositionValue - swipe; // indicate scroll down
       double holderThreshToCheck = calculateThreshHold(updatePosition) ;
@@ -75,7 +99,7 @@ class MyController{
       }
     }else if(swipe<0){
       //swipe down
-      log('down');
+     // log('down');
       final updatePosition =
           _holdPositionValue - swipe; // indicate scroll down
       double holderThreshToCheck = calculateThreshHold(updatePosition) ;
@@ -136,8 +160,8 @@ class MyController{
     controller.value = 0; // Reset the animation to start from the beginning
     controller.animateTo(
       1,
-      curve: Curves.easeInOut,
-      duration: const Duration(milliseconds: 1000),
+       curve: animationCurve,
+      // duration: const Duration(milliseconds: 1000),
     );
 
     _animationListener = () {
@@ -155,6 +179,7 @@ class MyController{
       //  // currentPage += value>0? -1: 1;
       // }
       // log('$value   -  $end');
+
       updateThressHold(value);
     };
 
@@ -168,7 +193,7 @@ class MyController{
     if(_currentPage<totalPage-1 && pageIncrease){
       _currentPage++;
     }
-    log('current ___________----------- $_currentPage');
+    //log('current ___________----------- $_currentPage');
   }
 
   void updateThressHold(double value){
